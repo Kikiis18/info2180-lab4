@@ -1,3 +1,3 @@
 <?php
-echo "<h1>Lab 4 Working!</h1>";
+readfile(__DIR__ . '/index.html');
 ?>

@@ -78,7 +78,7 @@ if ($query !== '') {
     if (count($matches) === 1) {
         $superhero = array_values($matches)[0];
         echo '<h3>' . htmlspecialchars($superhero['alias'], ENT_QUOTES, 'UTF-8') . '</h3>';
-        echo '<h4>' . htmlspecialchars($superhero['name'], ENT_QUOTES, 'UTF-8') . '</h4>';
+        echo '<h4>A.K.A. ' . htmlspecialchars($superhero['name'], ENT_QUOTES, 'UTF-8') . '</h4>';
         echo '<p>' . htmlspecialchars($superhero['biography'], ENT_QUOTES, 'UTF-8') . '</p>';
     } else {
         echo '<p class="not-found">Superhero not found</p>';
