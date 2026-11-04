@@ -64,9 +64,30 @@ $superheroes = [
 ];
 
 ?>
+<?php
+header('Content-Type: text/html; charset=UTF-8');
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+$query = isset($_GET['query']) ? trim((string) $_GET['query']) : '';
+
+if ($query !== '') {
+    $matches = array_filter($superheroes, function ($superhero) use ($query) {
+        return strcasecmp(trim($query), trim($superhero['name'])) === 0
+            || strcasecmp(trim($query), trim($superhero['alias'])) === 0;
+    });
+
+    if (count($matches) === 1) {
+        $superhero = array_values($matches)[0];
+        echo '<h3>' . htmlspecialchars($superhero['alias'], ENT_QUOTES, 'UTF-8') . '</h3>';
+        echo '<h4>' . htmlspecialchars($superhero['name'], ENT_QUOTES, 'UTF-8') . '</h4>';
+        echo '<p>' . htmlspecialchars($superhero['biography'], ENT_QUOTES, 'UTF-8') . '</p>';
+    } else {
+        echo '<p class="not-found">Superhero not found</p>';
+    }
+} else {
+    echo '<ul>';
+    foreach ($superheroes as $superhero) {
+        echo '<li>' . htmlspecialchars($superhero['alias'], ENT_QUOTES, 'UTF-8') . '</li>';
+    }
+    echo '</ul>';
+}
+?>

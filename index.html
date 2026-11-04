@@ -8,8 +8,18 @@
 </head>
 <body>
     <main>
-        <h1>Avengers Character Search</h1>
-        <button id="search-btn" type="button">Search</button>
+        <header>Avengers Character Search</header>
+        <section class="search-panel">
+            <label for="search-field">Search by Full Name or Alias</label>
+            <form id="search-form">
+                <input id="search-field" name="query" type="text" placeholder="e.g. Captain America or Steve Rogers">
+                <button id="search-btn" type="submit">Search</button>
+            </form>
+        </section>
+        <section class="results-panel">
+            <h2>Result</h2>
+            <div id="result"></div>
+        </section>
     </main>
     <script src="app.js"></script>
 </body>
